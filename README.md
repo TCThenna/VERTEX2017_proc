@@ -12,6 +12,7 @@ Scope and order:
   * find best (accuracy and robust) estimator for width (based on contrast)
   * GBL vs triplet in 2D (based on constrast)
   * reso vs contrast for various bin sizes
+
 Parameters to change:
 
  * Reconstruction method of the scattering width (RMS, RMS98, RMS98 with 0 as center, meanOfSquares, meanOfSquares98, GaussFit, Student's T fit, ..?)
