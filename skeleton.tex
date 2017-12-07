@@ -82,6 +82,7 @@
 \newcommand{\Geant}{\ensuremath{\textrm{Geant4}}}
 
 %estimators
+\newcommand{\rmshundred}{\ensuremath{\textrm{rms}_\textrm{100}}}
 \newcommand{\rmsninety}{\ensuremath{\textrm{rms}_\textrm{90}}}
 
 \title{Material budget measurements with beam telescopes}
@@ -188,6 +189,27 @@ Hence the material budget and therefore the material properties of a sample can 
 % the measurement of such distributions for homogeneous samples of known material type and thickness can be used to calibrate the measured response, as implied in~\cite{ref:X0}.
 
 \section{Material budget estimators}
+
+In the plane of the SUT, scattering angle distributions are created for cells of size $\SI{40}{\um} \times \SI{40}{\um}$. 
+With a total number of XX simulated electron trajectories, the average number of tracks per image cell amounts to ..., the RMS of the number of tracks is ... .
+Hence, the statistics available for a given cell at a given cell size varies significantly, and therefore also the statistical uncertainty on the width of the scattering angle distribution. 
+Additionally, due to a fluctuating number of outliers in a given cell, different estimators results in different estimates of the width as their sensitivity on outliers differ. 
+Therefore, we construct various estimators of the width of the scattering angle distribution and compare their performance. 
+
+A priori, not absolute limit on the scattering angle is imposed in order not to bias the distribution before performing the estimate. 
+The following estimators are compared:
+\begin{itemize}
+ \item $\rmshundred$: RMS of the full data set
+ \item $\rmsninety$: RMS of the inner 90\% quantile
+ \item Gaussian fit to the full data set
+ \item Gaussian fit to the inner 95\% data set
+ \item Student t plus Gaussian fit to the full data set
+ \item Student t plus Gaussian fit to inner 95\% data set
+ \item Square root of the mean of the full data set of the squared angle distribution
+ \item Square root of the mean of the left 95\% of the data set of the squared angle distribution
+ 
+\end{itemize}
+
 
 criteria:
 
