@@ -211,17 +211,12 @@ The following estimators are compared:
 \end{itemize}
 
 
-criteria:
+%criteria:
+%
+%- robust (dependence on population)
+%- accurate (similar to HL)
+%- unbiased (no boundaries while filling)
 
-- robust (dependence on population)
-- accurate (similar to HL)
-- unbiased (no boundaries while filling)
-
-- Gaussian width of linearly filled
-- RMS of linearly filled 
-- Student t of linearly filled
-
-- sqrt of mean of quadratically filled
 
 \begin{figure}[t!]
   \centering
@@ -237,7 +232,7 @@ criteria:
 \section{Results}
 \paragraph{Contrast}
 
-- GBL vs triplet in 2D (based on contrast)
+- GBL vs triplet in 2D (based on contrast) ODER OHNE GBL?
 
 \begin{figure}[t!]
   \centering
@@ -265,7 +260,14 @@ criteria:
 
 
 \section{Conclusion}
-\lipsum
+
+We reported on simulations regarding material budget measurements using beam telescopes and GeV electrons. 
+The contrast of the image reconstructed from scattering angle distributions depends on the choice of the width estimator, especially at small statistics. 
+The estimator with the smallest variance was found to be ... resulting in an image CNR of $\SI{6.0}{6}$  at a voxel size of ... . % FIXME
+For the best performing estimator, the voxel size was varied affecting the image resolution and image contrast. 
+We found the resolution and contrast to be empirically described by reso = constant*1/(voxel cube length)**3/2, contrast = constant*...
+
+
 
 
 \bibliographystyle{unsrt}
