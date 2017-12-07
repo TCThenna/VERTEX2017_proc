@@ -84,6 +84,12 @@
 %estimators
 \newcommand{\rmshundred}{\ensuremath{\textrm{rms}_\textrm{100}}}
 \newcommand{\rmsninety}{\ensuremath{\textrm{rms}_\textrm{90}}}
+\newcommand{\gausshundred}{\ensuremath{\sigma_\textrm{100}}}
+\newcommand{\gaussninety}{\ensuremath{\sigma_\textrm{95}}}
+\newcommand{\studhundred}{\ensuremath{\textrm{t}_\textrm{100}}}
+\newcommand{\studninety}{\ensuremath{\textrm{t}_\textrm{90}}}
+\newcommand{\srmskhundred}{\ensuremath{\textrm{m}_\textrm{100}}}
+\newcommand{\srmskninety}{\ensuremath{\textrm{m}_\textrm{90}}}
 
 \title{Material budget measurements with beam telescopes}
 
@@ -168,7 +174,7 @@ In the chosen configuration, the sample is placed in the centre of the beam tele
 Whereas the distance $\dzsut$ between the SUT and the neighbouring sensors is minimised in order to yield a good pointing resolution at the sample,
  the distances $\dz$ between two sensor planes are maximised for a more precise angle measurement.
 Here, the distances were chosen to be $\dzsut =\SI{10}{\mm}$ and $\dz=\SI{150}{\mm}$. 
-An electron beam with a momentum of $\SI{5.00(15)}{\giga\eV/\cspeed}$ and a divergence of $\SI{1}{\milli\radian}$ is used to fully illuminate the sample. 
+An electron beam with a mean momentum of 5\,GeV/$\cspeed$, a Gaussian momentum spread of 0.15\,GeV/$\cspeed$, and a divergence of $\SI{1}{\milli\radian}$ is used to fully illuminate the sample. 
 
 The $\Geant$ libraries include a physics model emulating, among other things, energy losses due to ionization and scattering processes.
 Charged particles traversing any material are deflected by the electric field of the nuclei, resulting in an effective deflection of the particle in the transverse plane,
@@ -201,12 +207,12 @@ The following estimators are compared:
 \begin{itemize}
  \item $\rmshundred$: RMS of the full data set
  \item $\rmsninety$: RMS of the inner 90\% quantile
- \item Gaussian fit to the full data set
- \item Gaussian fit to the inner 95\% data set
- \item Student t plus Gaussian fit to the full data set
- \item Student t plus Gaussian fit to inner 95\% data set
- \item Square root of the mean of the full data set of the squared angle distribution
- \item Square root of the mean of the left 95\% of the data set of the squared angle distribution
+ \item $\gausshundred$: Gaussian fit to the full data set
+ \item $\gaussninety$: Gaussian fit to the inner 95\% quantile
+ \item $\studhundred$: Student t plus Gaussian fit to the full data set
+ \item $\studninety$: Student t plus Gaussian fit to inner 95\% quantile
+ \item $\srmskhundred$: Square root of the mean of the full data set of the squared angle distribution
+ \item $\srmskninety$: Square root of the mean of the left 95\% quantile of the squared angle distribution
  
 \end{itemize}
 
@@ -217,6 +223,8 @@ The following estimators are compared:
 %- accurate (similar to HL)
 %- unbiased (no boundaries while filling)
 
+Figure~\ref{fig:estis} shows the width distribution for the $\rmsninety$ estimator. 
+Clearly distinguishable are the regions of air, and the various thicknesses of aluminium, c.f.\ figure~\ref{fig:setup}. 
 
 \begin{figure}[t!]
   \centering
@@ -230,9 +238,15 @@ The following estimators are compared:
 \end{figure}
 
 \section{Results}
+
+at voxel size ... and fixed number of tracks.
+
 \paragraph{Contrast}
 
-- GBL vs triplet in 2D (based on contrast) ODER OHNE GBL?
+The contrast to noise ratio (CNR) of the reconstructed image is evaluated for all estimators. 
+As expected, the image CNR is best for the estimator with the smallest variance in the input values. 
+Also, the image performance of the other estimators follows their 2D performance. 
+In figure~\ref{fig:contrast}, the reconstructed image is shown for $\rmsninety$ (left) and $\rmshundred$ (right).
 
 \begin{figure}[t!]
   \centering
@@ -240,14 +254,24 @@ The following estimators are compared:
   \includegraphics[width=0.45\textwidth]{figures/dummy.eps} \put(-115, 130){(A)}\hspace{0.02\textwidth}
   \includegraphics[width=0.45\textwidth]{figures/dummy.eps} \put(-115, 130){(B)}\\%
     \caption[contrast]{%
-    (A) Contrast for estimator A.
-    (B) Contrast for estimator B.}
+    (A) Contrast and reso for estimator A.
+    (B) Contrast and reso for estimator B.}
   \label{fig:contrast}
 \end{figure}
 
+\paragraph{Resolution}
+
+The edge resolution of the reconstructed image is evaluated for all estimators. 
+As expected, the image edge resolution is best for the estimator with the smallest variance in the input values. 
+Also, the image performance of the other estimators follows their 2D performance. 
+In figure~\ref{fig:contrast}, the right-hand boxes show the edge resolution for $\rmsninety$ (left) and $\rmshundred$ (right).
+
 \paragraph{Resolution vs contrast}
 
-- reso vs contrast for various bin sizes
+%- reso vs contrast for various bin sizes
+Both the contrast and the edge resolution depend on the voxel size. 
+With smaller voxel sizes the number of tracks per voxel decreases, increasing the image noise and hence decreasing contrast.
+Within a certain range (... to ...), the decrased voxel size positively influences the image resolution. 
 
 \begin{figure}[t!]
   \centering
