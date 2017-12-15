@@ -88,8 +88,8 @@
 \newcommand{\gaussninety}{\ensuremath{\sigma_\textrm{95}}}
 \newcommand{\studhundred}{\ensuremath{\textrm{t}_\textrm{100}}}
 \newcommand{\studninety}{\ensuremath{\textrm{t}_\textrm{90}}}
-\newcommand{\srmskhundred}{\ensuremath{\textrm{m}_\textrm{100}}}
-\newcommand{\srmskninety}{\ensuremath{\textrm{m}_\textrm{90}}}
+\newcommand{\aadhundred}{\ensuremath{\textrm{AAD}_\textrm{100}}}
+\newcommand{\aadninety}{\ensuremath{\textrm{AAD}_\textrm{90}}}
 
 \title{Material budget measurements with beam telescopes}
 
@@ -199,8 +199,8 @@ Hence the material budget and therefore the material properties of a sample can 
 \begin{figure}[t!]
   \centering
   %\includegraphics[width=0.49\textwidth]{img/run28_1GeV_01mm_gblsumkxandsumky_xyP_mean.eps}  
-  \includegraphics[width=0.45\textwidth]{figures/dummy.eps} \put(-115, 130){(A)}\hspace{0.02\textwidth}
-  \includegraphics[width=0.45\textwidth]{figures/2Dxy.eps} \put(-115, 130){(B)}\\%
+  \includegraphics[width=0.45\textwidth]{figures/oneDistributionLogy.eps} \put(-165, 170){(A)}\hspace{0.02\textwidth}
+  \includegraphics[width=0.45\textwidth]{figures/2Dxy.eps} \put(-165, 170){(B)}\\%
     \caption[angle distribution]{%
     (A) }
   \label{fig:angledistries}
@@ -214,17 +214,14 @@ The statistics available for a given cell at a given cell size varies significan
 Additionally, due to a fluctuating number of outliers in a given cell, different estimators result in different estimates of the width as their sensitivity to outliers differ. 
 Therefore, we construct various estimators of the width of the scattering angle distribution and compare their performance. 
 
+%\setlength{\itemsep}{-10mm}
 A priori, no absolute limit on the scattering angle is imposed in order not to bias the distribution before performing the estimation. 
 The following estimators are compared:
-\begin{itemize}
- \item $\rmshundred$: RMS of the full data set
- \item $\rmsninety$: RMS of the inner 90\% quantile
- \item $\gausshundred$: Gaussian fit to the full data set
- \item $\gaussninety$: Gaussian fit to the inner 95\% quantile
- \item $\studhundred$: Student t plus Gaussian fit to the full data set
- \item $\studninety$: Student t plus Gaussian fit to inner 95\% quantile
- \item $\srmskhundred$: Square root of the mean of the full data set of the squared angle distribution
- \item $\srmskninety$: Square root of the mean of the left 95\% quantile of the squared angle distribution
+\begin{itemize}\itemsep0pt
+ \item RMS of a) the full data set ($\rmshundred$), b) the inner 90\% quantile ($\rmsninety$)
+ \item Gaussian fit to c) the full data set ($\gausshundred$), d) the inner 95\% quantile ($\gaussninety$)
+ \item Student t plus Gaussian fit to e) the full data set ($\studhundred$), f) the inner 95\% quantile ($\studninety$)
+ \item Average absolute deviation of g) the full data set ($\aadhundred$), g) the inner 90\% quantile ($\aadninety$)
  
 \end{itemize}
 
@@ -242,8 +239,8 @@ Clearly distinguishable are the regions of air, and the various thicknesses of a
 \begin{figure}[t!]
   \centering
   %\includegraphics[width=0.49\textwidth]{img/run28_1GeV_01mm_gblsumkxandsumky_xyP_mean.eps}  
-  \includegraphics[width=0.45\textwidth]{figures/dummy.eps} \put(-115, 130){(A)}\hspace{0.02\textwidth}
-  \includegraphics[width=0.45\textwidth]{figures/dummy.eps} \put(-115, 130){(B)}\\%
+  \includegraphics[width=0.45\textwidth]{figures/signalDist.eps} \put(-165, 170){(A)}\hspace{0.02\textwidth}
+  \includegraphics[width=0.45\textwidth]{figures/dummy.eps} \put(-165, 170){(B)}\\%
     \caption[estimator distribution]{%
     (A) The distribution of the width for the $\rmsninety$ estimator is shown. The vertical line represents the Highland prediction.
     (B) The mean and RMS of various estimators are compared to the Highland prediction for various thicknesses. }
