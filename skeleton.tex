@@ -91,7 +91,7 @@
 \newcommand{\aadhundred}{\ensuremath{\textrm{AAD}_\textrm{100}}}
 \newcommand{\aadninety}{\ensuremath{\textrm{AAD}_\textrm{90}}}
 
-\title{Material budget measurements with beam telescopes}
+\title{Simulation of material budget measurements with beam telescopes}
 
 \ShortTitle{Material budget measurements with beam telescopes}
 
@@ -104,16 +104,16 @@
         E-mail: \email{paul.schuetze@desy.de}}
 
 \abstract{
-High-precision particle tracking devices allow for two-dimensional analyses of the material budget distribution of, e.g., particle detectors and their periphery.
-These tracking devices, called beam telescopes, enable a precise measurement of the trajectory of charged particles with an angular resolution in the order of a few ten microradian
- and a position resolution of a few micrometer.
+High-precision particle tracking devices allow for a two-dimensional analysis of the material budget distribution of, e.g., particle detectors and their periphery.
+These tracking devices, called beam telescopes, enable a precise measurement of the trajectory of charged particles with a position resolution of a few micrometer
+and an angular resolution of the order of a few ten microradian.
 In this contribution, the material budget of a structured aluminum cube is reconstructed from various estimators based on the deflection angles of simulated electron trajectories.
 Electrons in the GeV-range serve as beam particles carrying enough momentum to traverse few millimetre thick targets
  whilst undergoing multiple Coulomb scattering in the target allowing for precise measurement of the deflection. 
 Probing a target under various rotation angles %with respect to the beam axis
  enables a tomographic reconstruction of the target. 
  
-We discuss the performance of the estimators and their impact on the contrast and resolution of the reconstructed image. 
+We discuss the performance of width estimators of the scattering angle distributions and their impact on the contrast and the resolution of the reconstructed image. 
 }
 
 \FullConference{The 26th International Workshop on Vertex Detectors\\
@@ -125,13 +125,14 @@ We discuss the performance of the estimators and their impact on the contrast an
 \linenumbers
 \section{Introduction}
 %\lipsum
-While traversing material, charged particles undergo multiple Coulomb scattering resulting in an angular distribution when leaving the material. 
+Charged particles undergo multiple Coulomb scattering while traversing material. 
+The distribution of the angle between the incoming and the outgoing trajectory, i.e.\ before and after the material, is characterised by the amount of material budget traversed. 
 The measurement of the width of such distributions offers to quantify the amount of material budget seen by the particle. 
 Moli\`ere~\cite{moliere} postulated a theory without empirical parameters to describe multiple scattering in arbitrary materials.
 Later, Gaussian approximations to the involved calculations of his theory have been developed e.g.\ by Highland~\cite{ref:scatteringhighland} in order to simplify predictions.
 
 %Today, precise tracking detectors allow for the characterisation of unknown materials based on their scattering properties. %try to avoid single phrase paragraphs, I guess.
-In this contribution, simulations have been performed replicating a 5\,GeV electron beam traversing a $\eudet$-type beam telescope \cite{JansenEPJ} and a structured aluminium cube serving as a sample under test. 
+For this contribution, simulations have been performed replicating a 5\,GeV electron beam traversing a $\eudet$-type beam telescope \cite{JansenEPJ} and a structured aluminium cube serving as a sample under test. 
 A track reconstruction is performed, enabling the extraction of the particle scattering angles at the target arising from the multiple scattering therein.
 Various estimators are constructed in order to measure the width of the angular distribution, preferably  in a precise, robust and unbiased manner. 
 As the angular distribution may vary largely from a normal distribution and presents with noticeable tails,
@@ -161,23 +162,24 @@ Six pixelated  silicon sensor planes, representing the DATURA beam telescope~\ci
 %The sensor planes resemble six MIMOSA 26 fine-pitch pixel sensors. 
 %With a pixel pitch of $\SI{18.4}{\mu}\times \SI{18.4}{\mu}$ and an array of 1152 columns and 576 rows, each sensor covers a total area of $\SI{21.2}{m\meter}\times\SI{10.6}{m\meter}$. 
 For every simulated particle traversing the pixel sensor planes, a sensor response is calculated. 
-These signals are clusters of one or more firing pixels,
- depending on the impact position of the particle, and are trimmed to their measured response~\cite{ref:datura-inpixel}.
+The simulated response consists of clusters of one or more registered pixels,
+ depending on the impact position of the particle, and is trimmed to its measured response~\cite{ref:datura-inpixel}.
 % The intrinsic sensor resolution has been measured to be $\SI{3.24}{\mu}$.
 
 The simulated SUT, shown in Fig.~\ref{fig:setup} (right), is an aluminium cube with an edge length of $\SI{6}{\mm}$,
  featuring a rectangular cut-out of $\SI{3}{\mm}\times\SI{3}{\mm}\times\SI{1.5}{\mm}$ at the bottom side. 
 Furthermore, squared and round holes ranging from $\SI{0.1}{\mm}$ to $\SI{1}{\mm}$ in size and diameter are added.% in order to investigate on the visibility of small structures.
 
+In the chosen configuration of the beam telescope,
+ the sample is placed in the centre of the beam telescope, half way between plane\,2 and plane\,3, as shown in Fig.~\ref{fig:setup}. %counting (``second'' is ambigious ...)
+The distance $\dzsut$ between the SUT and the neighbouring sensors is to be minimised for optimal pointing resolution at the sample,
+ whereas the distance $\dz$ between two sensor planes is maximised for improved angular resolution.
+Here, the distances were chosen to be $\dzsut =\SI{10}{\mm}$ and $\dz=\SI{150}{\mm}$, again representing a realistic choice. 
 
-In the chosen configuration, the sample is placed in the centre of the beam telescope, half way between plane\,2 and plane\,3, as shown in Fig.~\ref{fig:setup}. %counting (``second'' is ambigious ...)
-Whereas the distance $\dzsut$ between the SUT and the neighbouring sensors is minimised in order to yield a good pointing resolution at the sample,
- the distances $\dz$ between two sensor planes are maximised for a more precise angle measurement.
-Here, the distances were chosen to be $\dzsut =\SI{10}{\mm}$ and $\dz=\SI{150}{\mm}$. 
 An electron beam with a mean momentum of 5\,GeV/$\cspeed$, a Gaussian momentum spread of 0.15\,GeV/$\cspeed$, and a divergence of $\SI{1}{\milli\radian}$ is used to fully illuminate the sample. 
 
-The $\Geant$ libraries include a physics model emulating, among other things, energy losses due to ionization and scattering processes.
-Charged particles traversing any material are deflected by the electric field of the nuclei, resulting in an effective deflection of the particle in the transverse plane,
+The $\Geant$ libraries include physics models emulating, among other things, energy losses due to ionisation and scattering processes.
+Charged particles traversing any material are deflected by the electric field of the nuclei, resulting in an effective deflection of the particle in the transverse plane when leaving the material,
  which depends on the traversed material budget $\varepsilon_{\textrm{SUT}} = d / \xzero$ of the sample. 
 The parameter $\xzero$ denotes the radiation length of the material and is tabulated in reference~\cite{ref:pdg2016}. 
 As an approximation to the Moliere theory, the distribution of scattering angles follows a normal distribution with the variance given by~\cite{ref:scatteringhighland, ref:pdg2016} 
@@ -188,7 +190,7 @@ As an approximation to the Moliere theory, the distribution of scattering angles
 \end{equation}
 
 \noindent
-with the particle's velocity $\beta \cspeed$, its momentum $p$ and its charge number $z$. 
+with the particle's velocity $\beta \cspeed$, its momentum $p$ and its charge number $z$ and the material budget $\varepsilon$. 
 Hence the material budget and therefore the material properties of a sample can be extracted from a measurement of the scattering angle distribution.
 
 %In order to account for an inhomogeneous response of the measurement system,
