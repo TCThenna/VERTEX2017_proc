@@ -82,26 +82,27 @@
 \newcommand{\Geant}{\ensuremath{\textrm{Geant4}}}
 
 %estimators
-\newcommand{\rmshundred}{\ensuremath{\textrm{rms}_\textrm{100}}}
-\newcommand{\rmsninety}{\ensuremath{\textrm{rms}_\textrm{90}}}
-\newcommand{\gausshundred}{\ensuremath{\sigma_\textrm{100}}}
-\newcommand{\gaussninety}{\ensuremath{\sigma_\textrm{95}}}
-\newcommand{\studhundred}{\ensuremath{\textrm{t}_\textrm{100}}}
-\newcommand{\studninety}{\ensuremath{\textrm{t}_\textrm{90}}}
+\newcommand{\rmshundred}{\ensuremath{\textrm{RMS}_\textrm{100}}}
+\newcommand{\rmsninetyfive}{\ensuremath{\textrm{RMS}_\textrm{95}}}
+\newcommand{\rmsninety}{\ensuremath{\textrm{RMS}_\textrm{90}}}
+\newcommand{\gausshundred}{\ensuremath{\textrm{Gauss}_\textrm{100}}}
+\newcommand{\gaussninety}{\ensuremath{\textrm{Gauss}_\textrm{95}}}
+\newcommand{\studhundred}{\ensuremath{\textrm{T}_\textrm{100}}}
+\newcommand{\studninety}{\ensuremath{\textrm{T}_\textrm{90}}}
 \newcommand{\aadhundred}{\ensuremath{\textrm{AAD}_\textrm{100}}}
 \newcommand{\aadninety}{\ensuremath{\textrm{AAD}_\textrm{90}}}
 
 \title{Simulation of material budget measurements with beam telescopes}
 
-\ShortTitle{Material budget measurements with beam telescopes}
-
-\author{\speaker{Hendrik Jansen}\\
-        DESY\\
-        E-mail: \email{hendrik.jansen@desy.de}}
+\ShortTitle{Simulation of material budget measurements with beam telescopes}
 
 \author{Paul Sch\"utze\\
         DESY\\
         E-mail: \email{paul.schuetze@desy.de}}
+
+\author{\speaker{Hendrik Jansen}\\
+        DESY\\
+        E-mail: \email{hendrik.jansen@desy.de}}
 
 \abstract{
 High-precision particle tracking devices allow for a two-dimensional analysis of the material budget distribution of, e.g., particle detectors and their periphery.
@@ -177,6 +178,7 @@ The distance $\dzsut$ between the SUT and the neighbouring sensors is to be mini
 Here, the distances were chosen to be $\dzsut =\SI{10}{\mm}$ and $\dz=\SI{150}{\mm}$, again representing a realistic choice. 
 
 An electron beam with a mean momentum of 5\,GeV/$\cspeed$, a Gaussian momentum spread of 0.15\,GeV/$\cspeed$, and a divergence of $\SI{1}{\milli\radian}$ is used to fully illuminate the sample. 
+XX electrons have been simulated. %FIXME
 
 The $\Geant$ libraries include physics models emulating, among other things, energy losses due to ionisation and scattering processes.
 Charged particles traversing any material are deflected by the electric field of the nuclei, resulting in an effective deflection of the particle in the transverse plane when leaving the material,
@@ -185,7 +187,7 @@ The parameter $\xzero$ denotes the radiation length of the material and is tabul
 As an approximation to the Moliere theory, the distribution of scattering angles follows a normal distribution with the variance given by~\cite{ref:scatteringhighland, ref:pdg2016} 
 
 \begin{equation}
- \Theta_0^2 = \left( \frac{\SI{13.6}{\mega\eV}}{\beta \cspeed p}\cdot z \right)^2 \cdot \varepsilon \cdot \big( 1+0.038\cdot\ln(\varepsilon) \big)^2\,,
+ \theta_0^2 = \left( \frac{\SI{13.6}{\mega\eV}}{\beta \cspeed p}\cdot z \right)^2 \cdot \varepsilon \cdot \big( 1+0.038\cdot\ln(\varepsilon) \big)^2\,,
  \label{eq:highland}
 \end{equation}
 
@@ -196,38 +198,50 @@ Hence the material budget and therefore the material properties of a sample can 
 %In order to account for an inhomogeneous response of the measurement system,
 % the measurement of such distributions for homogeneous samples of known material type and thickness can be used to calibrate the measured response, as implied in~\cite{ref:X0}.
 
+
+
+
 \section{Material budget estimators}
 
 \begin{figure}[t!]
   \centering
   %\includegraphics[width=0.49\textwidth]{img/run28_1GeV_01mm_gblsumkxandsumky_xyP_mean.eps}  
-  \includegraphics[width=0.45\textwidth]{figures/oneDistLogy.eps} \put(-165, 170){(A)}\hspace{0.02\textwidth}
-  \includegraphics[width=0.45\textwidth]{figures/2Dxy.eps} \put(-165, 170){(B)}\\%
+  \includegraphics[width=0.49\textwidth]{figures/oneDistLogy.eps} \put(-175, 190){(A)}\hspace{0.01\textwidth}
+  \includegraphics[width=0.49\textwidth]{figures/2Dxy.eps} \put(-188, 190){(B)}\\%
     \caption[angle distribution]{%
-    (A) }
+    (A) For two given cells, one containing 6\,mm aluminium, one containing air, the scattering angle distribution is shown combining the angles in the $x$- and $y$-direction.
+    (B) The square of the width extracted via the $\aadninety$ estimator is shown within the SUT plane.}
   \label{fig:angledistries}
 \end{figure}
 
-In the plane of the SUT, scattering angle distributions are created for cells of size $\SI{40}{\um} \times \SI{40}{\um}$. 
-With a total number of XX simulated electron trajectories, the average number of tracks per image cell amounts to ..., the RMS of the number of tracks is ... .
-The scattering angle distribution within one cell with X tracks, is shown in figure~\ref{fig:angledistries} (A).
-From these distributions, the width in every cell is estimated. 
+The electron trajectories are reconstructed from their simulated sensor response using the EUTelescope track reconstruction framework. 
+The reconstruction method is described elsewhere~\cite{JansenEPJ, JansenTIPP} and uses the concept of General Brokes Lines \cite{Kleinwort-2012,Blobel20111760}
+ in order to consider for multiple Coulomb scattering in the sensors planes and in air.
+This results in precise knowledge of the incident position of the electron on the target and the deflection angle within the target. 
+
+In the plane of the SUT, scattering angle distributions are created for cells of size $\SI{100}{\um} \times \SI{100}{\um}$. 
+For each cell those tracks are considered, whose reconstructed incident position falls within the cell. 
+With a total number of XX simulated electron trajectories, the average number of tracks per image cell amounts to ..., the RMS of the number of tracks is ... . %FIXME
+The scattering angle distribution within a cell with X tracks is shown in figure~\ref{fig:angledistries} (A). %FIXME
+From these distributions, the width $\theta_0$ -- and the variance $\theta_0^2$ -- in every cell is estimated using various estimators. 
 The statistics available for a given cell at a given cell size varies significantly, and therefore also the statistical uncertainty on the width of the scattering angle distribution. 
 Additionally, due to a fluctuating number of outliers in a given cell, different estimators result in different estimates of the width as their sensitivity to outliers differ. 
 Therefore, we construct various estimators of the width of the scattering angle distribution and compare their performance. 
 
 %\setlength{\itemsep}{-10mm}
-A priori, no absolute limit on the scattering angle is imposed in order not to bias the distribution before performing the estimation. 
+A priori, no absolute limit on the scattering angle is imposed in order not to bias the scattering angle distribution, cf.\ figure~\ref{fig:angledistries} (A), before performing the estimation. 
 The following estimators are compared:
 \begin{itemize}\itemsep0pt
- \item RMS of a) the full data set ($\rmshundred$), b) the inner 90\% quantile ($\rmsninety$)
- \item Gaussian fit to c) the full data set ($\gausshundred$), d) the inner 95\% quantile ($\gaussninety$)
- \item Student t plus Gaussian fit to e) the full data set ($\studhundred$), f) the inner 95\% quantile ($\studninety$)
- \item Average absolute deviation of g) the full data set ($\aadhundred$), g) the inner 90\% quantile ($\aadninety$)
+ \item RMS of a) the full data set ($\rmshundred$), b) the inner 95\% quantile ($\rmsninetyfive$), c) the inner 90\% quantile ($\rmsninety$)
+ \item Gaussian fit to d) the full data set ($\gausshundred$), e) the inner 95\% quantile ($\gaussninety$)
+ \item Student's t plus Gaussian fit to f) the full data set ($\studhundred$), g) the inner 95\% quantile ($\studninety$)
+ \item Average absolute deviation of h) the full data set ($\aadhundred$), i) the inner 90\% quantile ($\aadninety$)
  
 \end{itemize}
 
-An example of the two dimensional distribution at a sample rotation angle of $\varphi = \SI{0}{\degree}$ is shown in figure~\ref{fig:angledistries} (B). 
+With the width extracted from every cell using $\aadninety$,
+ an example of the two dimensional distribution of these widths at a sample rotation angle of $\varphi = \SI{90}{\degree}$ is shown in figure~\ref{fig:angledistries} (B). 
+Clearly visible is the cut-out at the bottom and the regions with holes horizontally through the cube around $y=\SI{1.5}{\mm}$ and less visibly at $y=\SI{0.0}{\mm}$.
 
 %criteria:
 %
@@ -235,21 +249,37 @@ An example of the two dimensional distribution at a sample rotation angle of $\v
 %- accurate (similar to HL)
 %- unbiased (no boundaries while filling)
 
-Figure~\ref{fig:estis} shows the width distribution for the $\rmsninety$ estimator. 
-Clearly distinguishable are the regions of air, and the various thicknesses of aluminium, c.f.\ figure~\ref{fig:setup}. 
+For a given sample rotation, the histogramme of the squared $\aadninety$-width is shown in figure~\ref{fig:estis}.
+On the left hand side, a sharp peak is formed from regions containing air, the second peak from the left contains mostly widths values from those cells at the cut-out.
+The widths extracted from regions containing aluminium are well separated from those containing air. 
+For three regions (air, 3\,mm aluminium, 6\,mm aluminium) the average (full circles and triangles) and the RMS (error bars) of the squared estimators are calculated and compared in figure~\ref{fig:estis} (B), 
+ along the $x$-axis various estimators are listed. 
+In order to be able to compare the these averages with the Highland prediction, a scale factor $\sqrt{\pi/2}$
+ has been applied to the AAD-values, which is the appropriate scale factor between the AAD and the standard deviation assuming a normal distribution. 
+
+The performance of the estimators can be judged from figure~\ref{fig:estis} (B).
+Two estimators, namely $\aadninety$ and $\rmsninety$, present with the smallest RMS and an estimate for $\theta_0^2$ in good agreement with the Highland prediction. 
+The inset of figure~\ref{fig:estis} (B) shows the linearity of the $\aadninety$ estimator with growing material budget. 
+
+
 
 \begin{figure}[t!]
   \centering
   %\includegraphics[width=0.49\textwidth]{img/run28_1GeV_01mm_gblsumkxandsumky_xyP_mean.eps}  
-  \includegraphics[width=0.45\textwidth]{figures/signalDistLogy.eps} \put(-165, 170){(A)}\hspace{0.02\textwidth}
-  \includegraphics[width=0.45\textwidth]{figures/estimators3.eps} \put(-165, 170){(B)}\\%
+  \includegraphics[width=0.49\textwidth]{figures/signalDistLogy.eps} \put(-175, 190){(A)}\hspace{0.01\textwidth}
+  \includegraphics[width=0.49\textwidth]{figures/estimators3.eps} \put(-175, 190){(B)}\\%
     \caption[estimator distribution]{%
-    (A) The distribution of the width for the $\rmsninety$ estimator is shown. The vertical line represents the Highland prediction.
-    (B) The mean and RMS of various estimators are compared to the Highland prediction for various thicknesses. }
+    (A) The distribution of the squared widths for the $\aadninety$ estimator is shown. 
+    (B) The mean of the squared widths and the RMS of the squared widths of various estimators are compared to the Highland prediction for air and two aluminium thicknesses. 
+    The horizontal lines represents the Highland predictions.
+    }
   \label{fig:estis}
 \end{figure}
 
-\section{Results}
+
+
+
+\section{Reconstructed image}
 
 at voxel size ... and fixed number of tracks.
 
@@ -263,8 +293,8 @@ In figure~\ref{fig:contrast}, the reconstructed image is shown for $\rmsninety$ 
 \begin{figure}[t!]
   \centering
   %\includegraphics[width=0.49\textwidth]{img/run28_1GeV_01mm_gblsumkxandsumky_xyP_mean.eps}  
-  \includegraphics[width=0.48\textwidth]{figures/edgesMAD90.eps} \put(-115, 115){(A)}\hspace{0.02\textwidth}
-  \includegraphics[width=0.48\textwidth]{figures/edgesRMS95.eps} \put(-115, 115){(B)}\\%
+  \includegraphics[width=0.49\textwidth]{figures/edgesMAD90.eps} \put(-195, 115){(A)}\hspace{0.01\textwidth}
+  \includegraphics[width=0.49\textwidth]{figures/edgesRMS95.eps} \put(-195, 115){(B)}\\%
     \caption[contrast]{%
     (A) Contrast and reso for estimator h) (AAD$_{90}$).. %FIXME
     (B) Contrast and reso for estimator  a+b/2 (rms$_{95}$)}
@@ -293,6 +323,9 @@ Within a certain range (... to ...), the decrased voxel size positively influenc
     Reso vs contrast for various voxel sizes}
   \label{fig:resovscontrast}
 \end{figure}
+
+
+
 
 
 \section{Conclusion}
