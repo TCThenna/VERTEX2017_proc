@@ -281,14 +281,33 @@ The inset of figure~\ref{fig:estis} (B) shows the linearity of the $\aadninety$ 
 
 \section{Reconstructed image}
 
-at voxel size ... and fixed number of tracks.
+With the method described above, two-dimensional images are acquired that represent the position-resolved variance of the scattering angle distribution,
+ and therefore an estimator for the material budget projected onto the $x$-$y$-plane. 
+Subsequently, these images are split into vertical data columns, or slices. 
+In order to reconstruct the sample's material budget distribution within a given slice,
+ the simulation and analysis are repeated for different rotation angles of the sample and the corresponding vertical slices from all angles are combined to form sinograms.
+The procedure is described here~\cite{JansenAPL}. 
+
+At a voxel size of $\SI{100}{\um} \times \SI{100}{\um} \times \SI{100}{\um}$ and XX tracks, we reconstruct the material budget with two different estimators, $\aadninety$ and $\rmsninetyfive$,
+ and compare their performance in terms of image contrast and image resolution. 
+
 
 \paragraph{Contrast}
 
-The contrast to noise ratio (CNR) of the reconstructed image is evaluated for all estimators. 
-As expected, the image CNR is best for the estimator with the smallest variance in the input values. 
-Also, the image performance of the other estimators follows their 2D performance. 
-In figure~\ref{fig:contrast}, the reconstructed image is shown for $\rmsninety$ (left) and $\rmshundred$ (right).
+The contrast to noise ratio (CNR) 
+
+\begin{equation}
+ C = \frac{\mu_{\textrm{alu}} - \mu_{\textrm{air}}}{\sqrt{\sigma_{\textrm{alu}}^{2} + \sigma_{\textrm{air}}^{2}}}
+\end{equation}
+
+\noindent
+of the reconstructed image is defined as the ratio of the difference of the mean squared estimators ($\mu$) and the quadratic sum of the RMS. 
+In figure~\ref{fig:contrast}, the reconstructed image is shown for $\aadninety$ (A) and $\rmsninetyfive$ (B).
+The regions used to evaluate the CNR are marked with blue (aluminium) and red (air) rectangles.
+As expected, the image CNR is best for the estimator with the smallest variance in the input values, i.e.\ for $\aadninety$. 
+We find a CNR of $\num{5.60(20)}$ using $\aadninety$. 
+For $\rmsninetyfive$, i.e.\ an estimator with a larger RMS, a CNR of $\num{4.26(15)}$ is calculated. 
+
 
 \begin{figure}[t!]
   \centering
@@ -296,24 +315,33 @@ In figure~\ref{fig:contrast}, the reconstructed image is shown for $\rmsninety$ 
   \includegraphics[width=0.49\textwidth]{figures/edgesMAD90.eps} \put(-195, 115){(A)}\hspace{0.01\textwidth}
   \includegraphics[width=0.49\textwidth]{figures/edgesRMS95.eps} \put(-195, 115){(B)}\\%
     \caption[contrast]{%
-    (A) Contrast and reso for estimator h) (AAD$_{90}$).. %FIXME
-    (B) Contrast and reso for estimator  a+b/2 (rms$_{95}$)}
+    Contrast and edge resolution for (A) estimator $\aadninety$ and (B) $\rmsninetyfive$.
+    The edge resolution is evaluated at the two indicated positions.}
   \label{fig:contrast}
 \end{figure}
 
+
 \paragraph{Resolution}
 
-The edge resolution of the reconstructed image is evaluated for all estimators. 
-As expected, the image edge resolution is best for the estimator with the smallest variance in the input values. 
-Also, the image performance of the other estimators follows their 2D performance. 
-In figure~\ref{fig:contrast}, the right-hand boxes show the edge resolution for $\rmsninety$ (left) and $\rmshundred$ (right).
+The edge resolution, defined in reference \cite{JansenAPl}, of the reconstructed image is evaluated and displayed for two estimators. 
+In figure~\ref{fig:contrast}, the right-hand boxes show the edge resolution for $\aadninety$ (A) and $\rmsninetyfive$ (B).
+The red line represents an error function fit to the simulation data. 
+We find edge resolutions of $\sigmaedge = \SI{67.9}{75}$ for $\aadninety$ and $\sigmaedge = \SI{78.4}{104}$ for $\rmsninety$. 
+For sufficiently large contrast, the edge resolution is not affected strongly by the choice of the estimator. 
+This is due to the fact, that at the chosen voxel size, the edge resolution is dominantly effected by the voxel size itself, with only one or two middle points in the fit.  
+
 
 \paragraph{Resolution vs contrast}
 
 %- reso vs contrast for various bin sizes
 Both the contrast and the edge resolution depend on the voxel size. 
-With smaller voxel sizes the number of tracks per voxel decreases, increasing the image noise and hence decreasing contrast.
-Within a certain range (... to ...), the decrased voxel size positively influences the image resolution. 
+With smaller voxel sizes the number of tracks per voxel decreases, increasing the image noise and hence decreasing the contrast.
+The image resolution improves, i.e.\ decreases, with smaller voxel sizes in the range studies herein. 
+Figure~\ref{fig:resovscontrast} shows the contrast (left $y$-axis) and the edge resolution (right $y$-axis) as a function of the cubic voxel size.
+For the studied voxel sizes between $\SI{40}{\um}$ and $\SI{400}{\um}$, the extracted edge resolution is dominantly affected by the voxel size (about 0.5 times the voxel size). 
+Therefore, this edge resolution is rather an upper limit on the achievable resolution. 
+With both increasing contrast and edge resolution towards increasing voxel sizes, there is a trade-off of between these two quantities when performing the image reconstruction. 
+The
 
 \begin{figure}[t!]
   \centering
