@@ -301,7 +301,7 @@ The contrast to noise ratio (CNR)
 \end{equation}
 
 \noindent
-of the reconstructed image is defined as the ratio of the difference of the mean squared estimators ($\mu$) and the quadratic sum of the RMS. 
+of the reconstructed image is defined as the ratio of the difference of the mean squared estimators ($\mu$) and the quadratic sum of the RMS of the estimator ($\sigma$). 
 In figure~\ref{fig:contrast}, the reconstructed image is shown for $\aadninety$ (A) and $\rmsninetyfive$ (B).
 The regions used to evaluate the CNR are marked with blue (aluminium) and red (air) rectangles.
 As expected, the image CNR is best for the estimator with the smallest variance in the input values, i.e.\ for $\aadninety$. 
@@ -316,6 +316,7 @@ For $\rmsninetyfive$, i.e.\ an estimator with a larger RMS, a CNR of $\num{4.26(
   \includegraphics[width=0.49\textwidth]{figures/edgesRMS95.eps} \put(-195, 115){(B)}\\%
     \caption[contrast]{%
     Contrast and edge resolution for (A) estimator $\aadninety$ and (B) $\rmsninetyfive$.
+    The coloured boxes indicate the regions used for the determination of the contrast, blue for aluminium, red for air.
     The edge resolution is evaluated at the two indicated positions.}
   \label{fig:contrast}
 \end{figure}
@@ -323,10 +324,10 @@ For $\rmsninetyfive$, i.e.\ an estimator with a larger RMS, a CNR of $\num{4.26(
 
 \paragraph{Resolution}
 
-The edge resolution, defined in reference \cite{JansenAPl}, of the reconstructed image is evaluated and displayed for two estimators. 
+The edge resolution, defined in reference \cite{JansenAPL}, of the reconstructed image is evaluated and displayed for two estimators. 
 In figure~\ref{fig:contrast}, the right-hand boxes show the edge resolution for $\aadninety$ (A) and $\rmsninetyfive$ (B).
 The red line represents an error function fit to the simulation data. 
-We find edge resolutions of $\sigmaedge = \SI{67.9}{75}$ for $\aadninety$ and $\sigmaedge = \SI{78.4}{104}$ for $\rmsninety$. 
+We find edge resolutions of $\sigmaedge = \SI{67.9(75)}{\um}$ for $\aadninety$ and $\sigmaedge = \SI{78.4(104)}{\um}$ for $\rmsninety$. 
 For sufficiently large contrast, the edge resolution is not affected strongly by the choice of the estimator. 
 This is due to the fact, that at the chosen voxel size, the edge resolution is dominantly effected by the voxel size itself, with only one or two middle points in the fit.  
 
@@ -358,11 +359,12 @@ The
 
 \section{Conclusion}
 
-We reported on simulations regarding material budget measurements using beam telescopes and GeV electrons. 
-The contrast of the image reconstructed from scattering angle distributions depends on the choice of the width estimator, especially at small statistics. 
-The estimator with the smallest variance was found to be ... resulting in an image CNR of $\SI{6.0}{6}$  at a voxel size of ... . % FIXME
-For the best performing estimator, the voxel size was varied affecting the image resolution and image contrast. 
-We found the resolution and contrast to be empirically described by reso = constant*1/(voxel cube length)**3/2, contrast = constant*...
+We reported on simulations on material budget measurements of an structured aluminium cube using GeV electrons and a beam telescope for tracking. 
+Subsequent simulations for different rotation angles of the sample under test are used to reconstruct images along the depth of the sample. 
+The contrast of the image reconstructed from scattering angle distributions depends on the choice of the width estimator. 
+The estimator with the smallest variance was found to be $\aadninety$ resulting in an image CNR of $\num{5.60(20)}$ at a voxel size of $\SI{100}{\um} \times \SI{100}{\um} \times \SI{100}{\um}$.
+For the best performing estimator, the voxel size was varied and the effect on the image resolution and image contrast was studied.
+Both the contrast and the edge resolution increase towards increasing voxel sizes. 
 
 
 
