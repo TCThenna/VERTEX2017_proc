@@ -82,13 +82,13 @@
 \newcommand{\Geant}{\ensuremath{\textrm{Geant4}}}
 
 %estimators
-\newcommand{\rmshundred}{\ensuremath{\textrm{rms}_\textrm{100}}}
-\newcommand{\rmsninetyfive}{\ensuremath{\textrm{rms}_\textrm{95}}}
-\newcommand{\rmsninety}{\ensuremath{\textrm{rms}_\textrm{90}}}
-\newcommand{\gausshundred}{\ensuremath{\sigma_\textrm{100}}}
-\newcommand{\gaussninety}{\ensuremath{\sigma_\textrm{95}}}
-\newcommand{\studhundred}{\ensuremath{\textrm{t}_\textrm{100}}}
-\newcommand{\studninety}{\ensuremath{\textrm{t}_\textrm{90}}}
+\newcommand{\rmshundred}{\ensuremath{\textrm{RMS}_\textrm{100}}}
+\newcommand{\rmsninetyfive}{\ensuremath{\textrm{RMS}_\textrm{95}}}
+\newcommand{\rmsninety}{\ensuremath{\textrm{RMS}_\textrm{90}}}
+\newcommand{\gausshundred}{\ensuremath{\textrm{Gauss}_\textrm{100}}}
+\newcommand{\gaussninety}{\ensuremath{\textrm{Gauss}_\textrm{95}}}
+\newcommand{\studhundred}{\ensuremath{\textrm{T}_\textrm{100}}}
+\newcommand{\studninety}{\ensuremath{\textrm{T}_\textrm{90}}}
 \newcommand{\aadhundred}{\ensuremath{\textrm{AAD}_\textrm{100}}}
 \newcommand{\aadninety}{\ensuremath{\textrm{AAD}_\textrm{90}}}
 
@@ -219,7 +219,7 @@ The reconstruction method is described elsewhere~\cite{JansenEPJ, JansenTIPP} an
  in order to consider for multiple Coulomb scattering in the sensors planes and in air.
 This results in precise knowledge of the incident position of the electron on the target and the deflection angle within the target. 
 
-In the plane of the SUT, scattering angle distributions are created for cells of size $\SI{40}{\um} \times \SI{40}{\um}$. 
+In the plane of the SUT, scattering angle distributions are created for cells of size $\SI{100}{\um} \times \SI{100}{\um}$. 
 For each cell those tracks are considered, whose reconstructed incident position falls within the cell. 
 With a total number of XX simulated electron trajectories, the average number of tracks per image cell amounts to ..., the RMS of the number of tracks is ... . %FIXME
 The scattering angle distribution within a cell with X tracks is shown in figure~\ref{fig:angledistries} (A). %FIXME
@@ -234,7 +234,7 @@ The following estimators are compared:
 \begin{itemize}\itemsep0pt
  \item RMS of a) the full data set ($\rmshundred$), b) the inner 95\% quantile ($\rmsninetyfive$), c) the inner 90\% quantile ($\rmsninety$)
  \item Gaussian fit to d) the full data set ($\gausshundred$), e) the inner 95\% quantile ($\gaussninety$)
- \item Student t plus Gaussian fit to f) the full data set ($\studhundred$), g) the inner 95\% quantile ($\studninety$)
+ \item Student's t plus Gaussian fit to f) the full data set ($\studhundred$), g) the inner 95\% quantile ($\studninety$)
  \item Average absolute deviation of h) the full data set ($\aadhundred$), i) the inner 90\% quantile ($\aadninety$)
  
 \end{itemize}
@@ -259,7 +259,7 @@ In order to be able to compare the these averages with the Highland prediction, 
 
 The performance of the estimators can be judged from figure~\ref{fig:estis} (B).
 Two estimators, namely $\aadninety$ and $\rmsninety$, present with the smallest RMS and an estimate for $\theta_0^2$ in good agreement with the Highland prediction. 
-The inset of figure~\ref{fig:estis} (B) shows the linearity of the estimator with growing material budget. 
+The inset of figure~\ref{fig:estis} (B) shows the linearity of the $\aadninety$ estimator with growing material budget. 
 
 
 
@@ -279,7 +279,7 @@ The inset of figure~\ref{fig:estis} (B) shows the linearity of the estimator wit
 
 
 
-\section{Results}
+\section{Reconstructed image}
 
 at voxel size ... and fixed number of tracks.
 
