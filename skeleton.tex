@@ -220,21 +220,21 @@ The reconstruction method is described elsewhere~\cite{JansenEPJ, JansenTIPP} an
 This results in precise knowledge of the incident position of the electron on the target and the deflection angle within the target. 
 
 In the plane of the SUT, scattering angle distributions are created for cells of size $\SI{100}{\um} \times \SI{100}{\um}$ adding up to $\num{20000}$ cells. %FIXME 20*10 / 0.1 / 0.1, correct?
-For each cell those tracks are considered, whose reconstructed incident position falls within the cell. 
+For each cell those tracks are considered, which reconstructed incident position falls within the cell. 
 With a total number of XX simulated electron trajectories, the average number of tracks per image cell amounts to ..., the RMS of the number of tracks per cell is ... . %FIXME
 The scattering angle distribution within a cell with X tracks is shown in figure~\ref{fig:angledistries} (A). %FIXME
-From these distributions, the width $\theta_0$ -- and the variance $\theta_0^2$ -- in every cell is estimated using various estimators. 
+From these distributions, the width $\theta_0$ -- and the variance $\theta_0^2$ -- in every cell is extracted. 
 The statistics available for a given cell at a given cell size varies significantly, and therefore also the statistical uncertainty on the width of the scattering angle distribution. 
-Additionally, due to a fluctuating number of outliers in a given cell, different estimators result in differing estimates of the width as they vary in sensitivity to outliers. 
+Additionally, due to a fluctuating number of outliers in a given cell, using different estimator methods results in differing estimates of the width as they vary in sensitivity to outliers and tails of the distributions. 
 Therefore, we construct various estimators of the width of the scattering angle distribution and compare their performance. 
 
 %\setlength{\itemsep}{-10mm}
-A priori, no absolute limit on the individual scattering angle is imposed in order not to bias the scattering angle distribution before performing the estimation. 
+A priori, no absolute limit on the individual scattering angle is imposed in order not to bias the scattering angle distribution before extracting the width of the distributions. 
 The following estimators are compared:
 \begin{itemize}\itemsep0pt
  \item RMS of a) the full data set ($\rmshundred$), b) the inner 95\% quantile ($\rmsninetyfive$), c) the inner 90\% quantile ($\rmsninety$)
  \item Gaussian fit to d) the full data set ($\gausshundred$), e) the inner 95\% quantile ($\gaussninety$)
- \item Student's t plus Gaussian fit to f) the full data set ($\studhundred$), g) the inner 95\% quantile ($\studninety$) %FIXME hast du T90 oder T95 gemacht?
+ \item Student's t plus Gaussian fit to f) the full data set ($\studhundred$), g) the inner 90\% quantile ($\studninety$)
  \item Average absolute deviation of h) the full data set ($\aadhundred$), i) the inner 90\% quantile ($\aadninety$)
  
 \end{itemize}
@@ -249,17 +249,18 @@ Clearly visible is the cut-out at the bottom and the regions with holes horizont
 %- accurate (similar to HL)
 %- unbiased (no boundaries while filling)
 
-The histogramme of the squared $\aadninety$-widths is extracted from figure~\ref{fig:angledistries}~(B) and shown in figure~\ref{fig:estis}~(A).
-On the left-hand side, a sharp peak is formed from regions containing air (dark blue regions in figure~\ref{fig:angledistries}~(B),
- the second peak from the left contains mostly widths values from those cells at the cut-out (light blue).
-The widths extracted from regions containing aluminium are well separated from those containing air. 
-For three regions, i.e.\ air, 3\,mm aluminium and 6\,mm aluminium, the average (full circles and triangles) and the RMS (error bars) of the squared estimators are calculated and compared in figure~\ref{fig:estis} (B), 
- along the $x$-axis various estimators are listed. 
+The histogram of the squared $\aadninety$-widths is extracted from figure~\ref{fig:angledistries}~(B) and shown in figure~\ref{fig:estis}~(A).
+On the left-hand side, a sharp peak is formed from regions containing air (dark blue regions in figure~\ref{fig:angledistries}~(B)),
+ the three peaks between $0.1$ and $\SI{0.3}{\milli\radian}^2$ contain the values from regions with different thicknesses of aluminium.
+% the second peak from the left contains mostly values from the cells at the cut-out (light blue).
+%The values extracted from regions containing aluminium are well separated from those containing air. 
+For three regions, i.e.\ air, 3\,mm aluminium and 6\,mm aluminium, the average (full circles and triangles) and the RMS (error bars) of the squared widths yielded from different estimators are compared in figure~\ref{fig:estis} (B), 
+ with the various estimators listed along the $x$-axis. 
 In order to be able to compare these averages with the Highland prediction, a scale factor $\sqrt{\pi/2}$
  has been applied to the AAD-values, which is the appropriate scale factor between the AAD and the standard deviation assuming a normal distribution. 
-The performance of the estimators is judged from figure~\ref{fig:estis} (B).
-Two estimators, namely $\aadninety$ and $\rmsninety$, present with the smallest RMS and an estimate for $\theta_0^2$ in good agreement with the Highland prediction. 
-The inset of figure~\ref{fig:estis} (B) shows the linearity of the squared $\aadninety$-estimator with growing material budget. 
+The performance of the estimators is judged from figure~\ref{fig:estis} (B), where
+two estimators, namely $\aadninety$ and $\rmsninety$, present with the smallest RMS and an estimate for $\theta_0^2$ in good agreement with the Highland prediction. 
+The inset of figure~\ref{fig:estis} (B) shows the linearity of the $\aadninety$-estimator for different material budgets. 
 
 
 
@@ -281,7 +282,7 @@ The inset of figure~\ref{fig:estis} (B) shows the linearity of the squared $\aad
 
 \section{Reconstructed image}
 
-With the method described above, two-dimensional images are acquired that represent the position-resolved width, or variance, of the scattering angle distribution,
+With the method described above, two-dimensional images as shown in  figure~\ref{fig:angledistries}~(B) are acquired that represent the position-resolved variance of the scattering angle distribution,
  and therefore an estimator for the material budget projected onto the $x$-$y$-plane. 
 Subsequently, these images are split into vertical data columns, or slices. 
 In order to reconstruct the sample's material budget distribution within a given slice, cf.\ the red box in figure~\ref{fig:angledistries}~(B),
