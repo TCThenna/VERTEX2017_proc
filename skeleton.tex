@@ -110,11 +110,11 @@ These tracking devices, called beam telescopes, enable a precise measurement of 
 and an angular resolution of the order of a few ten microradian.
 In this contribution, the material budget of a structured aluminum cube is reconstructed from various estimators based on the deflection angles of simulated electron trajectories.
 Electrons in the GeV-range serve as beam particles carrying enough momentum to traverse few millimetre thick targets
- whilst undergoing multiple Coulomb scattering in the target allowing for precise measurement of the deflection. 
+ whilst undergoing multiple Coulomb scattering in the target allowing for a precise measurement of the deflection. 
 Probing a target under various rotation angles %with respect to the beam axis
  enables a tomographic reconstruction of the target. 
  
-We discuss the performance of width estimators of the scattering angle distributions and their impact on the contrast and the resolution of the reconstructed image. 
+We discuss the performance of width estimators of the scattering angle distributions and their impact on the contrast and the resolution of the reconstructed two- and three-dimensional images. 
 }
 
 \FullConference{The 26th International Workshop on Vertex Detectors\\
@@ -128,16 +128,18 @@ We discuss the performance of width estimators of the scattering angle distribut
 %\lipsum
 Charged particles undergo multiple Coulomb scattering while traversing material. 
 The distribution of the angle between the incoming and the outgoing trajectory, i.e.\ before and after the material, is characterised by the amount of material budget traversed. 
-The measurement of the width of such distributions offers to quantify the amount of material budget interfering with the particle. 
 Moli\`ere~\cite{moliere} postulated a theory without empirical parameters to describe multiple scattering in arbitrary materials.
-Later, Gaussian approximations to the involved calculations of his theory have been developed e.g.\ by Highland~\cite{ref:scatteringhighland} in order to simplify predictions.
+Later, Gaussian approximations to the involved calculations of his theory have been developed e.g.\ by Highland~\cite{ref:scatteringhighland} in order to simplify predictions on these angular distributions.
+The measurement of the width of such distributions offers to quantify the amount of material budget interfering with the particle. 
+Furthermore, the position-resolved measurement of the scattering angle distribution enables two- and even three-dimensional imaging of any object's material budget distribution.
+
 
 %Today, precise tracking detectors allow for the characterisation of unknown materials based on their scattering properties. %try to avoid single phrase paragraphs, I guess.
 For this contribution, simulations have been performed replicating a 5\,GeV electron beam traversing a $\eudet$-type beam telescope \cite{JansenEPJ} and a structured aluminium cube serving as a sample under test. 
 A track reconstruction is performed enabling the position-resolved computation of the scattering angle of beam particles at the target arising from the multiple scattering therein.
 Various estimators are constructed in order to measure the width of the angular distribution, preferably  in a precise, robust and unbiased manner. 
 As the angular distribution may vary largely from a normal distribution and presents with noticeable tails,
- we evaluate the impact of the choice of the estimator on the reconstructed image in terms of contrast and resolution. 
+ we evaluate the impact of the choice of the estimator on the reconstructed image in terms of contrast and resolution of the reconstructed images. 
 
 
 \section{Simulation set-up}
@@ -178,7 +180,7 @@ The distance $\dzsut$ between the SUT and the neighbouring sensors is to be mini
 Here, the distances were chosen to be $\dzsut =\SI{10}{\mm}$ and $\dz=\SI{150}{\mm}$, again representing a realistic choice. 
 
 An electron beam with a mean momentum of 5\,GeV/$\cspeed$, a Gaussian momentum spread of 0.15\,GeV/$\cspeed$, and a divergence of $\SI{1}{\milli\radian}$ is used to fully illuminate the sample. 
-XX electrons have been simulated. %FIXME
+%XX electrons have been simulated. %FIXME (PS: That was written twice, see section 3)
 
 The $\Geant$ libraries include physics models emulating, among other things, energy losses due to ionisation and scattering processes.
 Charged particles traversing any material are deflected by the electric field of the nuclei, resulting in an effective deflection and offset of the particle in the transverse plane when leaving the material,
@@ -219,10 +221,10 @@ The reconstruction method is described elsewhere~\cite{JansenEPJ, JansenTIPP} an
  in order to consider for multiple Coulomb scattering in the sensors planes and in air.
 This results in precise knowledge of the incident position of the electron on the target and the deflection angle within the target. 
 
-In the plane of the SUT, scattering angle distributions are created for cells of size $\SI{100}{\um} \times \SI{100}{\um}$ adding up to $\num{20000}$ cells. %FIXME 20*10 / 0.1 / 0.1, correct?
-For each cell those tracks are considered, which reconstructed incident position falls within the cell. 
-With a total number of XX simulated electron trajectories, the average number of tracks per image cell amounts to ..., the RMS of the number of tracks per cell is ... . %FIXME
-The scattering angle distribution within a cell with X tracks is shown in figure~\ref{fig:angledistries} (A). %FIXME
+In the plane of the SUT, scattering angle distributions are created for cells of size $\SI{100}{\um} \times \SI{100}{\um}$ adding up to $\num{20000}$ cells.
+For each cell those tracks are considered, for which the reconstructed incident position falls within the cell. 
+With a total number of about $11$ million simulated electron trajectories for a two-dimensional image, the average number of tracks per image cell amounts to $1400$, the RMS of the number of tracks per cell is 90.
+The scattering angle distribution within a cell with $1460$ resp. $1386$ tracks is shown in figure~\ref{fig:angledistries} (A) for a region with $\SI{6}{\mm}$ of aluminium and air only.
 From these distributions, the width $\theta_0$ -- and the variance $\theta_0^2$ -- in every cell is extracted. 
 The statistics available for a given cell at a given cell size varies significantly, and therefore also the statistical uncertainty on the width of the scattering angle distribution. 
 Additionally, due to a fluctuating number of outliers in a given cell, using different estimator methods results in differing estimates of the width as they vary in sensitivity to outliers and tails of the distributions. 
@@ -280,17 +282,18 @@ The inset of figure~\ref{fig:estis} (B) shows the linearity of the $\aadninety$-
 
 
 
-\section{Reconstructed image}
+\section{Reconstructed tomographic image}
 
 With the method described above, two-dimensional images as shown in  figure~\ref{fig:angledistries}~(B) are acquired that represent the position-resolved variance of the scattering angle distribution,
  and therefore an estimator for the material budget projected onto the $x$-$y$-plane. 
-Subsequently, these images are split into vertical data columns, or slices. 
-In order to reconstruct the sample's material budget distribution within a given slice, cf.\ the red box in figure~\ref{fig:angledistries}~(B),
- the simulation and analysis are repeated for different rotation angles of the sample and the corresponding vertical slices from all angles are combined to form sinograms.
-An inverse radon transform of the sinogram of one slice yields a reconstruction of the two-dimensional material budget distribution~\cite{ref:deans2007radon}.
+To obtain information on the sample's inner structure, i.e. the material budget distribution along the $z$-axis, these images are split into vertical data columns, or slices,
+as indicated by the red box in figure~\ref{fig:angledistries}~(B) and
+ the simulation and analysis are repeated for different rotation angles of the sample.
+  The corresponding vertical slices from all rotation angles are combined to form so-called sinograms.
+An inverse radon transform of the sinogram of one slice yields a reconstruction of the two-dimensional material budget distribution in the $y$-$z$-plane~\cite{ref:deans2007radon}.
 For this work, the open source software package scikit-image~\cite{ref:scikitWebpage,ref:scikitArticle} is used,
  which is capable of performing a filtered back projection based on the central-slice theorem~\cite{ref:deans2007radon}.
-The procedure is described here~\cite{JansenAPLarxiv}. 
+The procedure is described here in more detail~\cite{JansenAPLarxiv}. 
 
 At a voxel size of $\SI{100}{\um} \times \SI{100}{\um} \times \SI{100}{\um}$ and XX tracks, we reconstruct the material budget with two different estimators, $\aadninety$ and $\rmsninetyfive$,
  and compare their performance in terms of image contrast and image resolution. 
@@ -320,7 +323,7 @@ For $\rmsninetyfive$, i.e.\ an estimator with a larger RMS, a CNR of $\num{4.26(
   \includegraphics[width=0.49\textwidth]{figures/edgesMAD90.eps} \put(-195, 115){(A)}\hspace{0.01\textwidth}
   \includegraphics[width=0.49\textwidth]{figures/edgesRMS95.eps} \put(-195, 115){(B)}\\%
     \caption[contrast]{%
-    Contrast and edge resolution for (A) estimator $\aadninety$ and (B) $\rmsninetyfive$.
+    Contrast and edge resolution for the estimators (A) $\aadninety$ and (B) $\rmsninetyfive$.
     The coloured boxes indicate the regions used for the determination of the contrast, blue for aluminium, red for air.
     The edge resolution is evaluated at the two indicated positions.}
   \label{fig:contrast}
@@ -331,21 +334,21 @@ For $\rmsninetyfive$, i.e.\ an estimator with a larger RMS, a CNR of $\num{4.26(
 
 The edge resolution, defined in reference \cite{JansenAPLarxiv}, of the reconstructed image is evaluated and displayed for two estimators. 
 In figure~\ref{fig:contrast}, the right-hand insets show the inverse radon transform values as a function of the depth coordinate for (A) $\aadninety$ and (B) $\rmsninetyfive$
- at the positions indicated with (1) and (2).
+ at the positions indicated with (1) and (2), averaged over 12 voxels along the $y$-axis.
 The red lines represent error function fits to the simulation data. 
 We find edge resolutions of $\sigmaedge = \SI{67.9(75)}{\um}$ for $\aadninety$ and $\sigmaedge = \SI{78.4(104)}{\um}$ for $\rmsninetyfive$. 
 For sufficiently large contrast, the edge resolution is not affected strongly by the choice of the estimator. 
-This is due to the fact, that at the chosen voxel size, the edge resolution is dominantly affected by the voxel size itself, with only one or two middle points in the fit.  
+This is due to the fact, that at the chosen voxel size, the edge resolution is dominantly affected by the voxel size itself, with only one or two points in the critical region of the fit.  
 
 
 \paragraph{Resolution vs.\ contrast}
 
 %- reso vs contrast for various bin sizes
-The method explained above is repeated for various voxel sizes. 
+The methods explained above are repeated for various voxel sizes. 
 Figure~\ref{fig:resovscontrast} shows the contrast (left $y$-axis) and the edge resolution (right $y$-axis) as a function of the cubic voxel size.
-Both the contrast and the edge resolution depend on the voxel size. 
+%Both the contrast and the edge resolution depend on the voxel size. 
 With smaller voxel sizes the number of tracks per voxel decreases, increasing the image noise and hence decreasing the contrast.
-The image resolution improves, i.e.\ decreases, with smaller voxel sizes in the range studies herein. 
+The image resolution improves, i.e.\ decreases, with smaller voxel sizes in the range studied herein. 
 For the studied voxel sizes between $\SI{40}{\um}$ and $\SI{400}{\um}$, the extracted edge resolution is dominantly affected by the voxel size (about 0.5 times the voxel size). 
 Therefore, the reported edge resolutions are rather upper limits on the achievable resolution. 
 With both increasing contrast and edge resolution towards increasing voxel sizes, there is a trade-off between these two quantities when performing the image reconstruction. 
@@ -368,8 +371,8 @@ With both increasing contrast and edge resolution towards increasing voxel sizes
 
 We reported on a simulation of material budget measurements of an structured aluminium cube using 5\,GeV electrons and a beam telescope for tracking. 
 Subsequent simulations for different rotation angles of the sample under test are used to reconstruct images along the depth of the sample. 
-The contrast of the image reconstructed from scattering angle distributions depends on the choice of the width estimator. 
-The estimator with the smallest variance was found to be $\aadninety$ resulting in an image CNR of $\num{5.60(20)}$ at a voxel size of $\SI{100}{\um} \times \SI{100}{\um} \times \SI{100}{\um}$.
+The contrast of the image reconstructed from scattering angle distributions depends on the choice of the estimator for the distributions' width. 
+The estimator with the smallest variance was found to be the average absolute deviation of the inner 90\% quantile ($\aadninety$) resulting in an image CNR of $\num{5.60(20)}$ at a voxel size of $\SI{100}{\um} \times \SI{100}{\um} \times \SI{100}{\um}$.
 For this estimator, the voxel size was varied and the effect on the image resolution and image contrast was studied.
 Both the contrast and the edge resolution increase towards increasing voxel sizes. 
 
