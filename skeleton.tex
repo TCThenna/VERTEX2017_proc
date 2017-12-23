@@ -109,12 +109,11 @@ High-precision particle tracking devices allow for a two-dimensional analysis of
 These tracking devices, called beam telescopes, enable a precise measurement of the trajectory of charged particles with a position resolution of a few micrometer
 and an angular resolution of the order of a few ten microradian.
 In this contribution, the material budget of a structured aluminium cube is reconstructed from various estimators based on the deflection angles of simulated electron trajectories.
-Electrons in the GeV-range serve as beam particles carrying enough momentum to traverse few millimetre thick targets
- whilst undergoing multiple Coulomb scattering in the target allowing for a precise measurement of the deflection. 
-Probing a target under various rotation angles %with respect to the beam axis
- enables a tomographic reconstruction of the target. 
+Probing a target under various rotation angles enables a tomographic reconstruction of the target. 
  
 We discuss the performance of width estimators of the scattering angle distributions and their impact on the contrast and the resolution of the reconstructed two- and three-dimensional images. 
+At a voxel size of 0.1\,mm $\times$ 0.1\,mm $\times$ 0.1\,mm, we reconstruct the material budget with a contrast to noise ratio of $5.6\pm0.2$
+ and an edge resolution of about $(70\pm10)$\,micrometre.
 }
 
 \FullConference{The 26th International Workshop on Vertex Detectors\\
@@ -123,7 +122,7 @@ We discuss the performance of width estimators of the scattering angle distribut
 
 
 \begin{document}
-\linenumbers
+%\linenumbers
 \section{Introduction}
 %\lipsum
 Charged particles undergo multiple Coulomb scattering while traversing material. 
@@ -136,6 +135,8 @@ Furthermore, the position-resolved measurement of the scattering angle distribut
 
 %Today, precise tracking detectors allow for the characterisation of unknown materials based on their scattering properties. %try to avoid single phrase paragraphs, I guess.
 For this contribution, simulations have been performed replicating a 5\,GeV electron beam traversing a $\eudet$-type beam telescope \cite{JansenEPJ} and a structured aluminium cube serving as a sample under test. 
+Electrons in the GeV-range serve as beam particles carrying enough momentum to traverse few millimetre thick targets
+ whilst undergoing multiple Coulomb scattering in the target allowing for a precise measurement of the deflection. 
 A track reconstruction is performed enabling the position-resolved computation of the scattering angle of beam particles at the target arising from the multiple scattering therein.
 Various estimators are constructed in order to measure the width of the angular distribution, preferably  in a precise, robust and unbiased manner. 
 As the angular distribution may vary largely from a normal distribution and presents with noticeable tails,
@@ -289,13 +290,13 @@ With the method described above, two-dimensional images as shown in  figure~\ref
 To obtain information on the sample's inner structure, i.e. the material budget distribution along the $z$-axis, these images are split into vertical data columns, or slices,
 as indicated by the red box in figure~\ref{fig:angledistries}~(B) and
  the simulation and analysis are repeated for different rotation angles of the sample.
-  The corresponding vertical slices from all rotation angles are combined to form so-called sinograms.
+The corresponding vertical slices from 180 rotation angles with a step of $\SI{1}{\degree}$ are combined to form so-called sinograms.
 An inverse radon transform of the sinogram of one slice yields a reconstruction of the two-dimensional material budget distribution in the $y$-$z$-plane~\cite{ref:deans2007radon}.
 For this work, the open source software package scikit-image~\cite{ref:scikitWebpage,ref:scikitArticle} is used,
  which is capable of performing a filtered back projection based on the central-slice theorem~\cite{ref:deans2007radon}.
 The procedure is described here in more detail~\cite{JansenAPLarxiv}. 
 
-At a voxel size of $\SI{100}{\um} \times \SI{100}{\um} \times \SI{100}{\um}$ and XX tracks, we reconstruct the material budget with two different estimators, $\aadninety$ and $\rmsninetyfive$,
+At a voxel size of $\SI{100}{\um} \times \SI{100}{\um} \times \SI{100}{\um}$, we reconstruct the material budget with two different estimators, $\aadninety$ and $\rmsninetyfive$,
  and compare their performance in terms of image contrast and image resolution. 
 
 
