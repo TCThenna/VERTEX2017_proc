@@ -262,7 +262,7 @@ In order to be able to compare these averages with the Highland prediction, a sc
  has been applied to the AAD-values, which is the appropriate scale factor between the AAD and the standard deviation assuming a normal distribution. 
 The performance of the estimators is judged from figure~\ref{fig:estis} (B), where
 two estimators, namely $\aadninety$ and $\rmsninety$, present with the smallest RMS and an estimate for $\theta_0^2$ in good agreement with the Highland prediction. 
-The inset of figure~\ref{fig:estis} (B) shows the linearity of the $\aadninety$-estimator for different material budgets. 
+The inset of figure~\ref{fig:estis} (B) shows the linearity of the squared $\aadninety$-estimator for different material budgets. 
 
 
 
@@ -371,8 +371,9 @@ With both increasing contrast and edge resolution towards increasing voxel sizes
 
 We reported on a simulation of material budget measurements of an structured aluminium cube using 5\,GeV electrons and a beam telescope for tracking. 
 Subsequent simulations for different rotation angles of the sample under test are used to reconstruct images along the depth of the sample. 
-The contrast of the image reconstructed from scattering angle distributions depends on the choice of the estimator for the distributions' width. 
-The estimator with the smallest variance was found to be the average absolute deviation of the inner 90\% quantile ($\aadninety$) resulting in an image CNR of $\num{5.60(20)}$ at a voxel size of $\SI{100}{\um} \times \SI{100}{\um} \times \SI{100}{\um}$.
+The contrast of the image reconstructed from the width of scattering angle distributions depends on the choice of the width estimator.
+The estimator with the smallest variance was found to be the average absolute deviation of the inner 90\% quantile ($\aadninety$)
+ resulting in an image CNR of $\num{5.60(20)}$ at a voxel size of $\SI{100}{\um} \times \SI{100}{\um} \times \SI{100}{\um}$.
 For this estimator, the voxel size was varied and the effect on the image resolution and image contrast was studied.
 Both the contrast and the edge resolution increase towards increasing voxel sizes. 
 
